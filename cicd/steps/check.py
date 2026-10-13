@@ -9,26 +9,26 @@ project = Path(os.environ["PROJECT_DIR"])
 
 # 1. ¿Existe el pom.xml?
 if not (project / "pom.xml").exists():
-    print("ERROR: pom.xml no encontrado en", project)
+    print("ERROR: pom.xml not found in", project)
     sys.exit(2)
 
 # 2. ¿Es un repositorio git?
 status = subprocess.run(["git", "status", "--porcelain"],
                         cwd=project, capture_output=True, text=True)
 if status.returncode != 0:
-    print("ERROR: el proyecto no es un repositorio git")
+    print("ERROR: the project is not a git repository")
     sys.exit(3)
 
 # 3. ¿Hay cambios sin commitear?
 if status.stdout.strip():
-    print("ERROR: hay cambios sin commitear:")
+    print("ERROR: there are uncommitted changes:")
     print(status.stdout)
     sys.exit(4)
 
 # 4. ¿Está Maven instalado?
 mvn = shutil.which("mvn")
 if mvn is None:
-    print("ERROR: Maven no encontrado")
+    print("ERROR: Maven not found")
     sys.exit(5)
 
 # 5. ¿El pom.xml es válido?

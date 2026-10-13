@@ -43,28 +43,28 @@ def run_step(name):
 
 def rollback():
     """Vuelve a poner en marcha la versión anterior."""
-    log("WARN", "Lanzando rollback")
+    log("WARN", "Starting rollback")
     if run_step("rollback") == 0:
-        log("OK", "Rollback hecho")
+        log("OK", "Rollback completed")
     else:
-        log("ERROR", "Rollback falló")
+        log("ERROR", "Rollback failed")
 
 
 def main():
     for step in STEPS:
-        log("INFO", f"Inicio: {step}")
+        log("INFO", f"Starting: {step}")
         start = time.time()
         code = run_step(step)
 
         if code == 0:
-            log("OK", f"{step} end in {time.time() - start:.0f}s")
+            log("OK", f"{step} finished in {time.time() - start:.0f}s")
         else:
-            log("ERROR", f"{step} failed with the código {code}")
+            log("ERROR", f"{step} failed with exit code {code}")
             if step == "deploy":
                 rollback()
             sys.exit(code)
 
-    log("OK", "Pipeline ended sucessfully")
+    log("OK", "Pipeline finished successfully")
 
 
 if __name__ == "__main__":

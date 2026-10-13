@@ -9,7 +9,7 @@ port = os.environ["PORT"]
 check = subprocess.run(["docker", "image", "inspect", f"{app}:previous"],
                        capture_output=True)
 if check.returncode != 0:
-    print("ERROR: no hay versión anterior a la que volver")
+    print("ERROR: no previous version to roll back to")
     sys.exit(2)
 
 # 2. Parar y borrar el contenedor que ha fallado
