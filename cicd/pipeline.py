@@ -7,7 +7,7 @@ from pathlib import Path
 from dotenv import dotenv_values
 
 # --- Configuración ---
-BASE = Path(__file__).resolve().parent              # carpeta cicd
+BASE = Path(__file__).resolve().parent             
 STEPS = ["check", "deps", "build", "test", "coverage", "package", "deploy"]
 
 # Lee el .env y lo convierte en diccionario: {"APP": "jolienom", ...}
