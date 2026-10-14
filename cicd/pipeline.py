@@ -8,7 +8,7 @@ from dotenv import dotenv_values
 
 # --- Configuración ---
 BASE = Path(__file__).resolve().parent              # carpeta cicd
-STEPS = ["check", "deps", "build", "test", "package", "deploy"]
+STEPS = ["check", "deps", "build", "test", "coverage", "package", "deploy"]
 
 # Lee el .env y lo convierte en diccionario: {"APP": "jolienom", ...}
 CONFIG = dotenv_values(BASE / ".env")
